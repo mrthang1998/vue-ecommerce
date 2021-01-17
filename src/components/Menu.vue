@@ -1,9 +1,16 @@
 <template>
   <div>
-    <div class="md-form active-pink active-pink-2 mb-3 mt-0 disabled" v-show="showSearchBox">
-      <input class="form-control bg-light text-dark" type="text" placeholder="Search Product" aria-label="Search">
-    </div> 
-    <div class="header shadow-sm p-2 mb-5 rounded d-md-none d-lg-block bg-white">
+    <div class="bg-secondary text-white pt-2 pb-2" v-show="showSearchBox">
+      <div class="container">
+        <!-- Search form -->
+        <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+            aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="header shadow-sm p-2 rounded d-md-none d-lg-block bg-white">
         <div class="container">
             <div class="row">
                 <div class="col-xl-2 text-center p-2">
@@ -50,7 +57,9 @@
                                 Groups
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Căn hộ chung cư</a></li>
+                                    <li v-for="group in groups" :key="group.id">
+                                      <router-link class="dropdown-item" to="/about">{{ group.title }}</router-link>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -81,7 +90,8 @@ export default {
         return{
           showSearchBox: false,
           brands: null,
-          categories: null
+          categories: null,
+          groups: null
         }
   },
   mounted () {
@@ -92,6 +102,10 @@ export default {
         axios
         .get('http://apiecommerce.huesoft.net/api/categories')
         .then(response => (this.categories = response.data.data))
+        .catch(error => console.log(error)),
+        axios
+        .get('http://apiecommerce.huesoft.net/api/groups')
+        .then(response => (this.groups = response.data.data))
         .catch(error => console.log(error))
 
     }

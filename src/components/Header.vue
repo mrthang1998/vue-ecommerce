@@ -1,17 +1,16 @@
 <template>
     <div>
         <Menu/>
-        <Slider></Slider>
+        <SliderSale></SliderSale>
     </div>
-  
 </template>
 
 <script>
-import Slider from './Slider'
+import SliderSale from './SliderSale'
 import Menu from './Menu'
 export default {
     components:{
-        Slider,
+        SliderSale,
         Menu
     }
 }

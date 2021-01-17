@@ -1,6 +1,6 @@
 <template>
     <div>
-        <VueSlickCarousel  v-bind="settings">
+        <VueSlickCarousel class="banner"  v-bind="settings">
             <div><img src="../assets/images/slider/banner3.jpg" alt=""></div>
             <div><img src="../assets/images/slider/banner4.jpg" alt=""></div>
             <div><img src="../assets/images/slider/banner2.jpg" alt=""></div>
@@ -22,10 +22,10 @@ export default {
             arrows: true,
             arrowsClass: "slick-dots custom-dot-class",
             edgeFriction: 0.35,
-            speed: 500,
+            speed: 100,
             slidesToShow: 1,
             slidesToScroll: 1,
-            autoplay:false,
+            autoplay:true,
             autoplaySpeed:1000
         },
       }
@@ -34,13 +34,18 @@ export default {
 }
 </script>
 <style>
-img{
-    text-align: center;
-    width: 50%;
-
+.banner img{
+    width: 100%;
+    height: 500px;
 }
-.slick-next::before, .slick-prev::before{
-    font-size: 20px;
+.banner .slick-next::before, .banner .slick-prev::before{
+    font-size: 40px;
 }
-
+.banner .slick-next {
+    right: 30px;
+}
+.banner .slick-prev{
+    left: 30px;
+    z-index: 1;
+}
 </style>
