@@ -1,9 +1,16 @@
 <template>
   <div>
-    <div class="md-form active-pink active-pink-2 mb-3 mt-0 disabled" v-show="showSearchBox">
-      <input class="form-control bg-light text-dark" type="text" placeholder="Search Product" aria-label="Search">
+    <div class="bg-secondary text-white pt-2 pb-2" v-show="showSearchBox">
+      <div class="container">
+        <!-- Search form -->
+        <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+            aria-label="Search">
+        </form>
+      </div>
     </div>
-    <div class="header shadow-sm p-2 mb-5 rounded d-md-none d-lg-block bg-white">
+    <div class="header shadow-sm p-2 rounded d-md-none d-lg-block bg-white">
         <div class="container">
             <div class="row">
                 <div class="col-xl-2 text-center p-2">
@@ -17,7 +24,7 @@
                         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item active">
-                              <router-link class="nav-link" to="/">Home Page<span class="sr-only">(current)</span></router-link>
+                              <a class="nav-link" href="#">Home Page<span class="sr-only">(current)</span></a>
                             </li>
                             <!-- Dropdown -->
                             <li class="nav-item dropdown">
@@ -30,7 +37,6 @@
                                     </li>
                                 </ul>
                             </li>
-                            <button @click="handleClick">click here</button>
                             <li class=" nav-item dropdown-mega">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                 Categories
@@ -51,7 +57,9 @@
                                 Groups
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Căn hộ chung cư</a></li>
+                                    <li v-for="group in groups" :key="group.id">
+                                      <router-link class="dropdown-item" to="/about">{{ group.title }}</router-link>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -72,7 +80,6 @@
         </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -83,27 +90,23 @@ export default {
           showSearchBox: false,
           brands: null,
           categories: null,
-          test: []
+          groups: null
         }
-  },
-  methods: {
-    handleClick(){
-      console.log(this.test);
-    }
   },
   mounted () {
         axios
-        .get('http://127.0.0.1:8000/api/brands')
+        .get('http://apiecommerce.huesoft.net/api/brands')
         .then(response => (this.brands = response.data.data))
         .catch(error => console.log(error)),
         axios
-        .get('http://127.0.0.1:8000/api/categories')
+        .get('http://apiecommerce.huesoft.net/api/categories')
         .then(response => (this.categories = response.data.data))
         .catch(error => console.log(error)),
         axios
-        .get('http://127.0.0.1:8000/api/brands')
-        .then(response => (this.test = response.data.data))
+        .get('http://apiecommerce.huesoft.net/api/groups')
+        .then(response => (this.groups = response.data.data))
         .catch(error => console.log(error))
+
     }
 
 }
