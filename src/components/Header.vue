@@ -19,3 +19,4 @@ export default {
 <style>
 
 </style>
+>>>>>>> d92c85d0406b9b462aaecf3a645684980e05ee77

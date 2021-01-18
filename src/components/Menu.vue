@@ -72,7 +72,7 @@
                         </div>
                     </nav>
                 </div>
-                <div class="col-xl-2 p-4">  
+                <div class="col-xl-2 p-4">
                   <i class="fa fa-shopping-cart cart-logo mr-3" aria-hidden="true">&nbsp;Cart</i>
                   <i class="fa fa-search search-logo" aria-hidden="true" @click="showSearchBox=!showSearchBox"></i>
                 </div>
@@ -80,7 +80,6 @@
         </div>
     </div>
   </div>
-    
 </template>
 
 <script>

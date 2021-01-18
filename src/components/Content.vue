@@ -37,11 +37,11 @@
 					</div>
 				</div>
 			</div><!--/.container-->
-		
+
 		</section><!--/.new-arrivals-->
 		<!--new-arrivals end -->
 	</div>
-  
+
 </template>
 
 <script>
