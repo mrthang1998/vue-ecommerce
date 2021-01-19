@@ -27,7 +27,7 @@
 										</p>
 									</div>
 								</div>
-								<h4 class="mt-3 mb-2"><router-link :to="'/detailproduct/' + product.id" class="text-decoration-none">{{product.title}}</router-link></h4>
+								<h4 class="mt-3 mb-2"><router-link :to="'/detail/' + product.id" class="text-decoration-none">{{product.title}}</router-link></h4>
 								<p class="arrival-product-price">${{product.price}}</p>
 							</div>
 						</div>

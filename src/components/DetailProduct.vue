@@ -34,19 +34,71 @@
         </div>
       </div>
     </div>
+    <div class="container pt-5 mt-5">
+      <div class="row mb-5">
+        <h2 class="text-center w-100 custom_related">Product related</h2>
+        <!-- <button @click="clickhere">clickhear</button> -->
+      </div>
+      <div class="row">
+        <div class="col-md-12 custom_img">
+          <VueSlickCarousel v-bind="settings">
+            <div v-for="item in product.related.slice(0)" :key="item.id">
+              <div class="card">
+                <div class="card-title text-center">{{ item.title }}</div>
+                <div class="card-body">
+                  <img
+                    :src="'http://apiecommerce.huesoft.net' + item.image_source"
+                    alt=""
+                  />
+                  <p class="text-center">Price: {{ item.price }}$</p>
+                  <h4 class="mt-3 mb-2">
+                    <!-- <router-link
+                      class="w-100 text-center"
+                      to=""
+                      v-on:click="detailproduct()"
+                      >{{ item.title }}</router-link
+                    > -->
+                    <button @click="updated()">{{ item.title }}</button>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </VueSlickCarousel>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import VueSlickCarousel from "vue-slick-carousel";
+import "vue-slick-carousel/dist/vue-slick-carousel.css";
+// optional style for arrows & dots
+import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 export default {
   data() {
     return {
-      productId: this.$route.params.id,
+      nameproduct: null,
       product: [],
+      productId: this.$route.params.id,
+      settings: {
+        arrows: true,
+        dots: true,
+        focusOnSelect: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        touchThreshold: 5,
+      },
     };
   },
   methods: {
+    detailproduct() {
+      this.nameproduct = "dinh hop";
+      console.log(this.nameproduct);
+    },
     clickhere() {
       console.log(this.product);
     },
@@ -59,6 +111,7 @@ export default {
       .then((response) => (this.product = response.data.data))
       .catch((error) => console.log(error));
   },
+  components: { VueSlickCarousel },
 };
 </script>
 
@@ -68,12 +121,25 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-
+.custom_img img {
+  width: 236px;
+  height: 236px;
+}
+.custom_img .slick-next::before,
+.custom_img .slick-prev::before {
+  font-size: 40px;
+  background: black;
+}
+.custom_img .slick-prev {
+  left: -40px;
+}
+.custom_img .slick-next {
+  right: 21px;
+}
 /* table, tr, td{
    border: 1px solid black;
    border-collapse: collapse;
 } */
-
 .help-block {
   color: red;
 }
@@ -91,7 +157,9 @@ export default {
    width: 160px;
    text-align: center;
 } */
-
+.custom_related {
+  font-size: 40px;
+}
 .margin {
   margin: 5% 0% 0% 2%;
 }
@@ -135,23 +203,6 @@ export default {
   border-radius: 0.35rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
-/* #page-top {
-   background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDw0PDQ0PDQ0PDQ0PDQ0NDw8NDQ0NFRUWFhUVFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDQ0NDg0NDisZHxkrNysrNysrKystLS0rKystKysrLSsrKysrKysrKysrLSsrKysrKysrKysrKysrKysrK//AABEIAKgBLAMBIgACEQEDEQH/xAAZAAEBAQADAAAAAAAAAAAAAAABAAIEBQf/xAAqEAEBAQABAgMFCQAAAAAAAAAAAREDAgQGIdITI0JTkgUSFkFDgYKRwv/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A8XSKiSIJIgkiCSIAogkUCSIBHFgBE4DKOIAigZRAANAAiACIAIgAiASiQJJAUkCIIIogkiCKQIogCiAKOAEcWAA1gAIgAGgABQMogAkgAKAAoAkgSRBJEEQQRSAkEEYjARRBHEgSaxAycKBlWNAAMaAMhqgGQ0AAIABoAAQARAApAkCCIIFJASCBhBAkGAYYGoChWGAkcWAE1iBnA1iwGQ0KDIaoBkUgACAApoAJIACASiQJJAikBIMAqIgYYCBMBgNEQgTBGoCKQJHEIymqzQArQFZrNaoBkEAGWqAAIoAEAEQAUSBJICkQRBAkECQYBjUZjUAwwRoDDBCBIMESKAUEAA1WaKGaaKArLVZoAUigAQABABJAFEgSSAoEDCDAJBAwwECYDAajTMINGMxoCQhCQgQpZoIUgUVmms0FWaaAANAAEAAQCBABJQEkgRBApICQYBMBgNGMmA1DGWoDRjMOg0ggaC1AtQ1aCZIoAGs0FWSAAIAAgECACQBJKACCCIIFAgSFAaLJAtRkg1DrMINFlaDepnUDS0atA0LQBAWgmaQCFQBBAEEgCQBAgEkgCSApICkgJgQNIECYEDRZIEs6QaTOkChq0CgAISAJAEEgFSAKggEEgCSAGBAkkCKQIpAikBSQFJASkCOpAkkCOpAhqQIJAgkCCQBBAnL+yvs/k7vm6OHivTOvq+9d67nT0yTbakDvp4F7q/rcX080/wAq+Be6+bxfTy+kIGb4H7rz97x+W/Bzek3wL3XzuL6eb0lAPwL3Xl73i88+Hl/P+LfT4B7uzfbcP7+0l/qwIH//2Q==");
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: contain;
-   width: 100%; */
-
-/* display: flex; */
-
-/* text-align: center; */
-
-/* align-items: center; */
-
-/* justify-content: center;
-} */
-
 .top {
   position: relative;
   top: 30%;
