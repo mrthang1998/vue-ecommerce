@@ -1,18 +1,10 @@
 <template>
   <div>
-    <VueSlickCarousel v-bind="settings">
-      <div class="customImg">
-        <img src="../assets/images/slider/banner3.jpg" alt="" />
-      </div>
-      <div class="customImg">
-        <img src="../assets/images/slider/banner4.jpg" alt="" />
-      </div>
-      <div class="customImg">
-        <img src="../assets/images/slider/banner2.jpg" alt="" />
-      </div>
-      <div class="customImg">
-        <img src="../assets/images/slider/banner1.jpg" alt="" />
-      </div>
+    <VueSlickCarousel class="banner" v-bind="settings">
+      <div><img src="../assets/images/slider/banner3.jpg" alt="" /></div>
+      <div><img src="../assets/images/slider/banner4.jpg" alt="" /></div>
+      <div><img src="../assets/images/slider/banner2.jpg" alt="" /></div>
+      <div><img src="../assets/images/slider/banner1.jpg" alt="" /></div>
     </VueSlickCarousel>
   </div>
 </template>
@@ -30,7 +22,7 @@ export default {
         arrows: true,
         arrowsClass: "slick-dots custom-dot-class",
         edgeFriction: 0.35,
-        speed: 1500,
+        speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
@@ -41,16 +33,19 @@ export default {
 };
 </script>
 <style>
-/* img {
-  text-align: center;
-  width: 50%;
-} */
-.slick-next::before,
-.slick-prev::before {
-  font-size: 20px;
-}
-.customImg > img {
+.banner img {
   width: 100%;
   height: 500px;
+}
+.banner .slick-next::before,
+.banner .slick-prev::before {
+  font-size: 40px;
+}
+.banner .slick-next {
+  right: 30px;
+}
+.banner .slick-prev {
+  left: 30px;
+  z-index: 1;
 }
 </style>
