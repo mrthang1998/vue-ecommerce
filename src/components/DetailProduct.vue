@@ -18,7 +18,7 @@
           <div class="col-12 col-md-4">
             <img
               class="imgdt"
-              :src="'http://apiecommerce.huesoft.net' + product.image_source"
+              :src="'http://127.0.0.1:8000' + product.image_source"
               alt=""
             />
           </div>
@@ -29,7 +29,8 @@
               -- Giá: {{ product.price }}$ --
             </h5>
             <li>Content: {{ product.content }}</li>
-            <button @click="clickhere">cilck to get product</button>
+            <!-- <button @click="clickhere">cilck to get product</button> -->
+            <button class="btn btn-info float-right">Add to Cart</button>
           </div>
         </div>
       </div>
@@ -42,12 +43,12 @@
       <div class="row">
         <div class="col-md-12 custom_img">
           <VueSlickCarousel v-bind="settings">
-            <div v-for="item in product.related.slice(0)" :key="item.id">
-              <div class="card">
+            <div v-for="item in product.related.slice(0, 4)" :key="item.id">
+              <div class="card mr-2">
                 <div class="card-title text-center">{{ item.title }}</div>
                 <div class="card-body">
                   <img
-                    :src="'http://apiecommerce.huesoft.net' + item.image_source"
+                    :src="'http://127.0.0.1:8000' + item.image_source"
                     alt=""
                   />
                   <p class="text-center">Price: {{ item.price }}$</p>
@@ -58,7 +59,9 @@
                       v-on:click="detailproduct()"
                       >{{ item.title }}</router-link
                     > -->
-                    <button @click="updated()">{{ item.title }}</button>
+                    <button class="w-100">
+                      {{ item.title }}
+                    </button>
                   </h4>
                 </div>
               </div>
@@ -99,15 +102,13 @@ export default {
       this.nameproduct = "dinh hop";
       console.log(this.nameproduct);
     },
-    clickhere() {
-      console.log(this.product);
-    },
+    // clickhere() {
+    //   console.log(this.product);
+    // },
   },
   mounted() {
     axios
-      .get(
-        "http://apiecommerce.huesoft.net/api/products/get?id=" + this.productId
-      )
+      .get("http://127.0.0.1:8000/api/products/get?id=" + this.productId)
       .then((response) => (this.product = response.data.data))
       .catch((error) => console.log(error));
   },

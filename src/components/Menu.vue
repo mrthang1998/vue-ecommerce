@@ -24,7 +24,7 @@
                         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item active">
-                              <a class="nav-link" href="#">Home Page<span class="sr-only">(current)</span></a>
+                              <router-link class="nav-link" to="/">Home Page<span class="sr-only">(current)</span></router-link>
                             </li>
                             <!-- Dropdown -->
                             <li class="nav-item dropdown">
