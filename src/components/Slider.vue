@@ -25,7 +25,7 @@ export default {
             speed: 100,
             slidesToShow: 1,
             slidesToScroll: 1,
-            autoplay:true,
+            autoplay:false,
             autoplaySpeed:1000
         },
       }

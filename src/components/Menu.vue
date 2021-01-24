@@ -24,7 +24,7 @@
                         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item active">
-                              <a class="nav-link" href="#">Home Page<span class="sr-only">(current)</span></a>
+                              <router-link to="/" class="nav-link">Home Page<span class="sr-only">(current)</span></router-link>
                             </li>
                             <!-- Dropdown -->
                             <li class="nav-item dropdown">
@@ -73,7 +73,7 @@
                     </nav>
                 </div>
                 <div class="col-xl-2 p-4">
-                  <i class="fa fa-shopping-cart cart-logo mr-3" aria-hidden="true">&nbsp;Cart</i>
+                  <router-link class="text-decoration-none text-dark" to="/cart"><i class="fa fa-shopping-cart cart-logo mr-3" aria-hidden="true">&nbsp;Cart: {{GET_CART.length}}</i></router-link>
                   <i class="fa fa-search search-logo" aria-hidden="true" @click="showSearchBox=!showSearchBox"></i>
                 </div>
             </div>
@@ -84,6 +84,8 @@
 
 <script>
 import axios from 'axios';
+import {GET_CART} from '../constants/mutation-type'
+import {mapGetters} from 'vuex'
 export default {
   data(){
         return{
@@ -92,6 +94,11 @@ export default {
           categories: null,
           groups: null
         }
+  },
+  computed: {
+    ...mapGetters({
+      GET_CART
+    })
   },
   mounted () {
         axios
@@ -120,7 +127,7 @@ export default {
   font-size: 22px!important;
 }
 .cart-logo{
-  font-size: 22px!important;
+  font-size: 20px!important;
 }
 .dropdown-content {
   display: none;
