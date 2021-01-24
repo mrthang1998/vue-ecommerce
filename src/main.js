@@ -11,8 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import './assets/css/bootsnav.css';
 import './assets/css/style.css';
 import './assets/css/responsive.css';
-import store from './store';
-import { SET_CART } from "./constants/mutation-type";
 
 Vue.config.productionTip = false
 
