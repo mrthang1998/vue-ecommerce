@@ -22,7 +22,9 @@
               <div class="single-new-arrival">
                 <div class="single-new-arrival-bg">
                   <img
-                    :src="'http://apiecommerce.huesoft.net' + product.image_source"
+                    :src="
+                      'http://apiecommerce.huesoft.net' + product.image_source
+                    "
                     alt="new-arrivals images"
                   />
                   <div class="single-new-arrival-bg-overlay"></div>
@@ -32,7 +34,7 @@
                   <div class="new-arrival-cart">
                     <p>
                       <span class="lnr lnr-cart"></span>
-                      <a @click="addToCart(product)"
+                      <a class="hand" @click="addToCart(product)"
                         >add <span>to </span> cart</a
                       >
                     </p>
@@ -94,4 +96,7 @@ export default {
 </script>
 
 <style>
+.hand {
+  cursor: pointer;
+}
 </style>

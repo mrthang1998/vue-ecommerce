@@ -7,6 +7,7 @@
             type="text"
             placeholder="Keyword Search"
             class="form-control"
+            v-model="searchQuery"
           />
         </div>
       </section>
@@ -184,7 +185,10 @@
         >
           <section class="panel">
             <div class="pro-img-box">
-              <img :src="'http://apiecommerce.huesoft.net' + item.image_source" alt="" />
+              <img
+                :src="'http://apiecommerce.huesoft.net' + item.image_source"
+                alt=""
+              />
               <a href="#" class="adtocart">
                 <i class="fa fa-shopping-cart"></i>
               </a>
@@ -210,7 +214,22 @@ export default {
     return {
       productGroup: [],
       idGroup: this.$route.params.id,
+      searchQuery: null,
     };
+  },
+  computed: {
+    resultQuery() {
+      if (this.searchQuery) {
+        return this.productGroup.filter((item) => {
+          return this.searchQuery
+            .toLowerCase()
+            .split(" ")
+            .every((v) => item.title.toLowerCase().includes(v));
+        });
+      } else {
+        return this.productGroup;
+      }
+    },
   },
   mounted() {
     axios
@@ -218,7 +237,11 @@ export default {
       .then((response) => (this.productGroup = response.data.data))
       .catch((error) => console.log(error));
   },
-  methods: {},
+  methods: {
+    getData() {
+      console.log(this.productGroup);
+    },
+  },
 };
 </script>
 
