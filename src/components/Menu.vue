@@ -33,7 +33,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li v-for="brand in brands" :key="brand.id">
-                                      <router-link class="dropdown-item" to="/about">{{ brand.title }}</router-link>
+                                      <router-link class="dropdown-item" :to="'/brand/'+brand.id">{{ brand.title }}</router-link>
                                     </li>
                                 </ul>
                             </li>

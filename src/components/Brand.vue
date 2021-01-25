@@ -180,7 +180,7 @@
       <div class="row product-list">
         <div
           class="col-md-4"
-          v-for="item in productGroup.products"
+          v-for="item in productBrand.products"
           :key="item.id"
         >
           <section class="panel">
@@ -212,29 +212,15 @@ import axios from "axios";
 export default {
   data() {
     return {
-      productGroup: [],
-      idGroup: this.$route.params.id,
+      productBrand: [],
+      idBrand: this.$route.params.id,
       searchQuery: null,
     };
   },
-  computed: {
-    resultQuery() {
-      if (this.searchQuery) {
-        return this.productGroup.filter((item) => {
-          return this.searchQuery
-            .toLowerCase()
-            .split(" ")
-            .every((v) => item.title.toLowerCase().includes(v));
-        });
-      } else {
-        return this.productGroup;
-      }
-    },
-  },
   mounted() {
     axios
-      .get("http://apiecommerce.huesoft.net/api/groups/get?id=" + this.idGroup)
-      .then((response) => (this.productGroup = response.data.data))
+      .get("http://apiecommerce.huesoft.net/api/brands/get?id=" + this.idBrand)
+      .then((response) => (this.productBrand = response.data.data))
       .catch((error) => console.log(error));
   },
   methods: {
