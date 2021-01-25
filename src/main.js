@@ -11,10 +11,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import './assets/css/bootsnav.css';
 import './assets/css/style.css';
 import './assets/css/responsive.css';
+import store from './store';
 
 Vue.config.productionTip = false
 
 new Vue({
+  store,
   router,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')

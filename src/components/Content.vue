@@ -22,7 +22,7 @@
               <div class="single-new-arrival">
                 <div class="single-new-arrival-bg">
                   <img
-                    :src="'http://127.0.0.1:8000' + product.image_source"
+                    :src="'http://apiecommerce.huesoft.net' + product.image_source"
                     alt="new-arrivals images"
                   />
                   <div class="single-new-arrival-bg-overlay"></div>
@@ -32,7 +32,9 @@
                   <div class="new-arrival-cart">
                     <p>
                       <span class="lnr lnr-cart"></span>
-                      <a href="#">add <span>to </span> cart</a>
+                      <a @click="addToCart(product)"
+                        >add <span>to </span> cart</a
+                      >
                     </p>
                     <p class="arrival-review pull-right">
                       <span class="lnr lnr-heart"></span>
@@ -79,15 +81,17 @@ export default {
   },
   mounted() {
     axios
-      .get("http://127.0.0.1:8000/api/groups")
+      .get("http://apiecommerce.huesoft.net/api/groups")
       .then((response) => (this.groups = response.data.data))
       .catch((error) => console.log(error));
   },
-  methods: {},
+  methods: {
+    addToCart(item) {
+      this.$store.commit("addToCart", item);
+    },
+  },
 };
 </script>
 
 <style>
-.new-arrivals {
-}
 </style>

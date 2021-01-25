@@ -162,40 +162,6 @@
           </form>
         </div>
       </section>
-      <section class="panel">
-        <header class="panel-heading">Best Seller</header>
-        <div class="panel-body">
-          <div class="best-seller">
-            <article class="media">
-              <a class="pull-left thumb p-thumb">
-                <img src="https://via.placeholder.com/250x220/FFB6C1/000000" />
-              </a>
-              <div class="media-body">
-                <a href="#" class="p-head">Item One Tittle</a>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </article>
-            <article class="media">
-              <a class="pull-left thumb p-thumb">
-                <img src="https://via.placeholder.com/250x220/A2BE2/000000" />
-              </a>
-              <div class="media-body">
-                <a href="#" class="p-head">Item Two Tittle</a>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </article>
-            <article class="media">
-              <a class="pull-left thumb p-thumb">
-                <img src="https://via.placeholder.com/250x220/6495ED/000000" />
-              </a>
-              <div class="media-body">
-                <a href="#" class="p-head">Item Three Tittle</a>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
     </div>
     <div class="col-md-9">
       <section class="panel">
@@ -218,7 +184,7 @@
         >
           <section class="panel">
             <div class="pro-img-box">
-              <img :src="'http://127.0.0.1:8000' + item.image_source" alt="" />
+              <img :src="'http://apiecommerce.huesoft.net' + item.image_source" alt="" />
               <a href="#" class="adtocart">
                 <i class="fa fa-shopping-cart"></i>
               </a>
@@ -248,7 +214,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://127.0.0.1:8000/api/groups/get?id=" + this.idGroup)
+      .get("http://apiecommerce.huesoft.net/api/groups/get?id=" + this.idGroup)
       .then((response) => (this.productGroup = response.data.data))
       .catch((error) => console.log(error));
   },

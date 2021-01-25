@@ -18,7 +18,7 @@
           <div class="col-12 col-md-4">
             <img
               class="imgdt"
-              :src="'http://127.0.0.1:8000' + product.image_source"
+              :src="'http://apiecommerce.huesoft.net' + product.image_source"
               alt=""
             />
           </div>
@@ -31,6 +31,12 @@
             <li>Content: {{ product.content }}</li>
             <!-- <button @click="clickhere">cilck to get product</button> -->
             <button class="btn btn-info float-right">Add to Cart</button>
+            <!-- <button @click="clickhere">cilck to get product</button>
+            <router-link
+              :to="'/detailproduct/' + 4"
+              class="text-decoration-none"
+              >click de thay doi san pham</router-link
+            > -->
           </div>
         </div>
       </div>
@@ -48,7 +54,7 @@
                 <div class="card-title text-center">{{ item.title }}</div>
                 <div class="card-body">
                   <img
-                    :src="'http://127.0.0.1:8000' + item.image_source"
+                    :src="'http://apiecommerce.huesoft.net' + item.image_source"
                     alt=""
                   />
                   <p class="text-center">Price: {{ item.price }}$</p>
@@ -108,7 +114,9 @@ export default {
   },
   mounted() {
     axios
-      .get("http://127.0.0.1:8000/api/products/get?id=" + this.productId)
+      .get(
+        "http://apiecommerce.huesoft.net/api/products/get?id=" + this.productId
+      )
       .then((response) => (this.product = response.data.data))
       .catch((error) => console.log(error));
   },
