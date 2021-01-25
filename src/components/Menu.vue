@@ -45,20 +45,21 @@
                                   <div class="">
                                     <div class="column" v-for="category in categories" :key="category.id">
                                       <h3>{{ category.title }}</h3>
-                                      <router-link v-for="categoryChild in category.children" :key="categoryChild.id" class="dropdown-item" to="#">
+                                      <router-link v-for="categoryChild in category.children" :key="categoryChild.id" class="dropdown-item" :to="'/category/'+categoryChild.id">
                                         {{ categoryChild.title }}
                                       </router-link>
                                     </div>
                                   </div>
                                 </div>
                             </li>
+                            <button @click="getCate">hello</button>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                 Groups
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li v-for="group in groups" :key="group.id">
-                                      <router-link class="dropdown-item" to="/about">{{ group.title }}</router-link>
+                                      <router-link class="dropdown-item" :to="'/group/'+group.id">{{ group.title }}</router-link>
                                     </li>
                                 </ul>
                             </li>
@@ -114,6 +115,11 @@ export default {
         .then(response => (this.groups = response.data.data))
         .catch(error => console.log(error))
 
+    },
+    methods: {
+      getCate(){
+        console.log(this.categories)
+      }
     }
 
 }

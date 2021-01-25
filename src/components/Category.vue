@@ -178,11 +178,7 @@
         </div>
       </section>
       <div class="row product-list">
-        <div
-          class="col-md-4"
-          v-for="item in productGroup.products"
-          :key="item.id"
-        >
+        <div class="col-md-4" v-for="item in productCategory" :key="item.id">
           <section class="panel">
             <div class="pro-img-box">
               <img
@@ -212,34 +208,25 @@ import axios from "axios";
 export default {
   data() {
     return {
-      productGroup: [],
-      idGroup: this.$route.params.id,
+      productCategory: [],
+      idCategory: this.$route.params.id,
       searchQuery: null,
     };
   },
-  computed: {
-    resultQuery() {
-      if (this.searchQuery) {
-        return this.productGroup.filter((item) => {
-          return this.searchQuery
-            .toLowerCase()
-            .split(" ")
-            .every((v) => item.title.toLowerCase().includes(v));
-        });
-      } else {
-        return this.productGroup;
-      }
-    },
-  },
   mounted() {
     axios
-      .get("http://apiecommerce.huesoft.net/api/groups/get?id=" + this.idGroup)
-      .then((response) => (this.productGroup = response.data.data))
+      .get(
+        "http://apiecommerce.huesoft.net/api/categories/products?id=" +
+          this.idCategory
+      )
+      .then(
+        (response) => (this.productCategory = response.data.category.products)
+      )
       .catch((error) => console.log(error));
   },
   methods: {
     getData() {
-      console.log(this.productGroup);
+      console.log(this.productCategory);
     },
     addToCart(item) {
       this.$store.commit("addToCart", item);

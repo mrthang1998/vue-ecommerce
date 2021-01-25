@@ -30,7 +30,7 @@
             </h5>
             <li>Content: {{ product.content }}</li>
             <!-- <button @click="clickhere">cilck to get product</button> -->
-            <button class="btn btn-info float-right">Add to Cart</button>
+            <button class="btn btn-info float-right" @click="addToCart(product)">Add to Cart</button>
             <!-- <button @click="clickhere">cilck to get product</button>
             <router-link
               :to="'/detailproduct/' + 4"
@@ -107,6 +107,9 @@ export default {
     detailproduct() {
       this.nameproduct = "dinh hop";
       console.log(this.nameproduct);
+    },
+    addToCart(item) {
+      this.$store.commit("addToCart", item);
     },
     // clickhere() {
     //   console.log(this.product);

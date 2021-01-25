@@ -41,6 +41,22 @@ const routes = [
   // this generates a separate chunk (about.[hash].js) for this route
   // which is lazy-loaded when the route is visited.
   component: () => import('../views/Cart.vue')
+},
+{
+  path: '/brand/:id',
+  name: 'Brand',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import('../views/Cart.vue')
+},
+{
+  path: '/category/:id',
+  name: 'Category',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import('../views/Category.vue')
 }
 ]
 
