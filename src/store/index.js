@@ -15,6 +15,7 @@ const store = new Vuex.Store({
         return state.cartItem;
       },
       [CART_TOTAL](state){
+        state.cart_total = 0;
         for (let index = 0; index < state.cartItem.length; index++) {
           state.cart_total += state.cartItem[index].price * state.cartItem[index].qty;
         }

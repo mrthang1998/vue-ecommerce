@@ -11,7 +11,7 @@
 						<div v-for="product in group.products.slice(0,8)" :key="product.id" class="col-md-3 col-sm-4">
 							<div class="single-new-arrival">
 								<div class="single-new-arrival-bg">
-									<img :src="'http://127.0.0.1:8000' + product.image_source" alt="new-arrivals images">
+									<img :src="'http://apiecommerce.huesoft.net/' + product.image_source" alt="new-arrivals images">
 									<div class="single-new-arrival-bg-overlay"></div>
 									<div class="sale bg-1">
 										<p>sale</p>
@@ -27,7 +27,7 @@
 										</p>
 									</div>
 								</div>
-								<h4 class="mt-3 mb-2"><router-link :to="'/detailproduct/' + product.id" class="text-decoration-none">{{product.title}}</router-link></h4>
+								<h4 class="mt-3 mb-2"><router-link :to="'/detail/' + product.id" class="text-decoration-none">{{product.title}}</router-link></h4>
 								<p class="arrival-product-price">${{product.price}}</p>
 							</div>
 						</div>
@@ -54,7 +54,7 @@ export default {
 	},
 	mounted(){
 		axios
-        .get('http://127.0.0.1:8000/api/groups')
+        .get('http://apiecommerce.huesoft.net/api/groups')
         .then(response => (this.groups = response.data.data))
         .catch(error => console.log(error))
 	},

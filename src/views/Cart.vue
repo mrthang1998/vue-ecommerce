@@ -26,9 +26,10 @@
 
                                     </div>
                                     <div class="col-md-6 mt-2">
-                                        <span class="min" @click="decrementQty(item.id)">-</span>
+                                        <span v-if="item.qty>1" class="min" @click="decrementQty(item.id)"><button type="button">-</button></span>
+                                        <span v-else class="min"><button type="button" disabled>-</button></span>
                                         <input type="tel" class="text-center inp" :value="item.qty">
-                                        <span class="max" @click="incrementQty(item.id)">+</span>
+                                        <span class="max" @click="incrementQty(item.id)"><button type="button">+</button></span>
                                     </div>
                                 </div>
                             </div>

@@ -30,11 +30,6 @@
             </h5>
             <li>Content: {{ product.content }}</li>
             <button @click="clickhere">cilck to get product</button>
-            <router-link
-              :to="'/detailproduct/' + 4"
-              class="text-decoration-none"
-              >click de thay doi san pham</router-link
-            >
           </div>
         </div>
       </div>
@@ -48,7 +43,7 @@ export default {
   data() {
     return {
       productId: this.$route.params.id,
-      // product: [],
+      product: [],
     };
   },
   methods: {
@@ -59,7 +54,7 @@ export default {
   mounted() {
     axios
       .get(
-        "http://127.0.0.1:8000/api/products/get?id=" + this.productId
+        "http://apiecommerce.huesoft.net/api/products/get?id=" + this.productId
       )
       .then((response) => (this.product = response.data.data))
       .catch((error) => console.log(error));
