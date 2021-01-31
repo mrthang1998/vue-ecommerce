@@ -178,11 +178,7 @@
         </div>
       </section>
       <div class="row product-list">
-        <div
-          class="col-md-4"
-          v-for="item in productGroup.products"
-          :key="item.id"
-        >
+        <div class="col-md-4" v-for="item in resultQuery" :key="item.id">
           <section class="panel">
             <div class="pro-img-box">
               <img
@@ -220,14 +216,14 @@ export default {
   computed: {
     resultQuery() {
       if (this.searchQuery) {
-        return this.productGroup.filter((item) => {
+        return this.productGroup.products.filter((item) => {
           return this.searchQuery
             .toLowerCase()
             .split(" ")
             .every((v) => item.title.toLowerCase().includes(v));
         });
       } else {
-        return this.productGroup;
+        return this.productGroup.products;
       }
     },
   },

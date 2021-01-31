@@ -8,30 +8,30 @@
                         <div class="col-md-9 p-2" style="background-color: #ffffff;margin-right: 8px;max-width: 73%; !important">
                             <a href="#" class="taga">Vue-ecommerce ></a>
                             <div v-for="(item, index) in GET_CART" :key="item.id" class="row p-3">
-                            <div class="col-md-2">
-                                <img src="furn.-master/imgs/d.jpg" alt="" class="w-100">
-                            </div>
-                            <div class="col-md-6" style="align-items: center;">
-                                <p style="font-size: 14px;">{{item.title}}</p>
-                                <div class="custom-align"></div>
-                                <a href="" style="font-size: 14px;" @click="removeItem(index)">Xóa</a>&emsp;
-                            </div>
-                            <div class="col-md-4">
-                                <div class=" row">
-                                    <div class="col-md-6">
-                                        <h5 class="price">{{item.price}}$</h5>
-                                        <p class="in-price">
-                                        <del style="font-size: 12px;color: rgb(162, 162, 162);">799.000đ</del> | <span>-74%</span>
-                                        </p>
+                                <div class="col-md-2">
+                                    <img :src="'http://apiecommerce.huesoft.net/'+item.image_source" alt="" class="w-100">
+                                </div>
+                                <div class="col-md-6" style="align-items: center;">
+                                    <p style="font-size: 14px;">{{item.title}}</p>
+                                    <div class="custom-align"></div>
+                                    <a href="" style="font-size: 14px;" @click="removeItem(index)">Xóa</a>&emsp;
+                                </div>
+                                <div class="col-md-4">
+                                    <div class=" row">
+                                        <div class="col-md-6">
+                                            <h5 class="price">{{item.price}}$</h5>
+                                            <p class="in-price">
+                                            <del style="font-size: 12px;color: rgb(162, 162, 162);">799.000đ</del> | <span>-74%</span>
+                                            </p>
 
-                                    </div>
-                                    <div class="col-md-6 mt-2">
-                                        <span class="min" @click="decrementQty(item.id)">-</span>
-                                        <input type="tel" class="text-center inp" :value="item.qty">
-                                        <span class="max" @click="incrementQty(item.id)">+</span>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <span class="min" @click="decrementQty(item.id)">-</span>
+                                            <input type="tel" class="text-center inp" :value="item.qty">
+                                            <span class="max" @click="incrementQty(item.id)">+</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                         <div class="col-md-3 p-4" style="background-color: #ffffff;margin-left: 7px;">

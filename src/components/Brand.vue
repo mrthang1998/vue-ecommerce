@@ -178,11 +178,7 @@
         </div>
       </section>
       <div class="row product-list">
-        <div
-          class="col-md-4"
-          v-for="item in productBrand.products"
-          :key="item.id"
-        >
+        <div class="col-md-4" v-for="item in resultQuery" :key="item.id">
           <section class="panel">
             <div class="pro-img-box">
               <img
@@ -216,6 +212,20 @@ export default {
       idBrand: this.$route.params.id,
       searchQuery: null,
     };
+  },
+  computed: {
+    resultQuery() {
+      if (this.searchQuery) {
+        return this.productBrand.products.filter((item) => {
+          return this.searchQuery
+            .toLowerCase()
+            .split(" ")
+            .every((v) => item.title.toLowerCase().includes(v));
+        });
+      } else {
+        return this.productBrand.products;
+      }
+    },
   },
   mounted() {
     axios

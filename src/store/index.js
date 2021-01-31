@@ -11,7 +11,6 @@ const store = new Vuex.Store({
     cart_total: 0
   },
   getters: {
-
       [GET_CART](state){
         return state.cartItem;
       },
